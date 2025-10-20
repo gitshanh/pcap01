@@ -12,20 +12,23 @@
 2. 参考pcap01_interface.*，实现4个函数接口，已使用HAL库示例。
 3. 参考pcap01_basic.*，实现初始化，配置寄存器，写入sram，读取测量结果等函数，示例已实现，根据需要修改。
 4. 添加所有修改后文件及路径，编译调试。
-5. 主函数或任务中添加
-`pcap_basic_init(&pcap);`
+5. 主函数或任务中添加初始化函数及获取测量值函数
 ~~~
+pcap_basic_init(&pcap);
+while(1)
+{
 float capacity1, capacity2, capacity3;
-if (pcap_basic_read_diff(&pcap, 0x1, &capacity1) == 0)
-{
-    printf("{C1}%5.3f\r\n", capacity1);
-}
-if (pcap_basic_read_diff(&pcap, 0x2, &capacity2) == 0)
-{
-    printf("C2= %5.3f pF\r\n", capacity2);
-}
-if (pcap_basic_read_diff(&pcap, 0x3, &capacity3) == 0)
-{
-    printf("C3= %5.3f pF\r\n", capacity3);
+    if (pcap_basic_read_diff(&pcap, 0x1, &capacity1) == 0)
+    {
+        printf("{C1}%5.3f\r\n", capacity1);
+    }
+    if (pcap_basic_read_diff(&pcap, 0x2, &capacity2) == 0)
+    {
+        printf("C2= %5.3f pF\r\n", capacity2);
+    }
+    if (pcap_basic_read_diff(&pcap, 0x3, &capacity3) == 0)
+    {
+        printf("C3= %5.3f pF\r\n", capacity3);
+    }
 }
 ~~~
